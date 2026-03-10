@@ -24,7 +24,7 @@ targets:
       - path: PrivacyInfo.xcprivacy
       - path: GoogleService-Info.plist
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.example.myapp
+      PRODUCT_BUNDLE_IDENTIFIER: com.nyogo.Plus
       INFOPLIST_FILE: Info.plist
       CODE_SIGN_ENTITLEMENTS: App.entitlements
       PROVISIONING_PROFILE_SPECIFIER: "$(APP_PROFILE_NAME)"
@@ -58,7 +58,7 @@ targets:
       - path: ShareExtension
       - path: GoogleService-Info.plist
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.example.myapp.ShareExtension
+      PRODUCT_BUNDLE_IDENTIFIER: com.nyogo.Plus.ShareExtension
       INFOPLIST_FILE: ShareExtension/Info.plist
       CODE_SIGN_ENTITLEMENTS: ShareExtension.entitlements
       PROVISIONING_PROFILE_SPECIFIER: "$(SHARE_EXTENSION_PROFILE_NAME)"
