@@ -8,7 +8,7 @@ storage_mode("git")
 
 # ⚠️ CHANGE THIS to your bundle identifier
 app_identifier([
-  ENV["BUNDLE_IDENTIFIER"] || "com.kalien.Ankiquiz",
+  ENV["BUNDLE_IDENTIFIER"] || "com.kalien.notememo",
   "#{ENV["BUNDLE_IDENTIFIER"] || "com.example.myapp"}.ShareExtension"
 ])
 
