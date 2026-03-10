@@ -8,8 +8,8 @@ storage_mode("git")
 
 # ⚠️ CHANGE THIS to your bundle identifier
 app_identifier([
-  ENV["BUNDLE_IDENTIFIER"] || "com.kalien.noooote",
-  "#{ENV["BUNDLE_IDENTIFIER"] || "com.example.myapp"}.ShareExtension"
+  ENV["BUNDLE_IDENTIFIER"] || "com.nyogo.Plus",
+  "#{ENV["BUNDLE_IDENTIFIER"] || "com.nyogo.Plus"}.ShareExtension"
 ])
 
 team_id(ENV["TEAM_ID"])
