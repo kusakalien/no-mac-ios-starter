@@ -5,9 +5,12 @@ import FirebaseCore
 struct MyApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
+    @State private var noteStore = NoteStore()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(noteStore)
         }
     }
 }
