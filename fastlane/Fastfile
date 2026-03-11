@@ -121,7 +121,7 @@ platform :ios do
     UI.message("🔨 Building #{app_name}...")
 
     build_app(
-      project: "../#{app_name}.xcodeproj"
+      project: "../#{app_name}.xcodeproj",
       scheme: app_name,
       export_method: "app-store",
       output_directory: "../build",
