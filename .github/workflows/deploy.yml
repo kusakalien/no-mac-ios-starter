@@ -88,6 +88,16 @@ jobs:
       - name: Generate Xcode Project
         run: xcodegen generate
 
+      - name: Debug - Verify project structure
+        run: |
+          echo "=== Root directory ==="
+          pwd
+          ls -la
+          echo "=== xcodeproj exists? ==="
+          ls -la *.xcodeproj || echo "❌ No xcodeproj found"
+          echo "=== fastlane dir ==="
+          ls fastlane/ 
+
       - name: Resolve SPM Dependencies
         run: |
           APP_NAME=$(grep "^name:" project.yml | sed 's/name: *//')
@@ -117,6 +127,19 @@ jobs:
           ls fastlane/
           echo "=== Working directory ==="
           pwd
+
+      - name: Debug - Before build
+        run: |
+          echo "=== Current dir ==="
+          pwd
+          echo "=== xcodeproj from root ==="
+          ls -la *.xcodeproj || echo "❌ not found"
+          echo "=== xcodeproj from fastlane ==="
+          ls -la fastlane/../*.xcodeproj || echo "❌ not found"
+          echo "=== TEAM_ID set? ==="
+          echo "TEAM_ID length: ${#TEAM_ID}"
+        env:
+          TEAM_ID: ${{ secrets.TEAM_ID }}
 
       - name: Build App and Upload to TestFlight
         env:
