@@ -97,7 +97,7 @@ platform :ios do
     setup_certificates
 
     bundle_id = ENV["BUNDLE_IDENTIFIER"] || "com.example.myapp"
-    extension_bundle_id = "#{bundle_id}.ShareExtension"
+    # extension_bundle_id = "#{bundle_id}.ShareExtension"
 
     profile_name = ENV["sigh_#{bundle_id}_appstore_profile-name"] || "match AppStore #{bundle_id}"
     share_extension_profile_name = ENV["sigh_#{extension_bundle_id}_appstore_profile-name"] || "match AppStore #{extension_bundle_id}"
