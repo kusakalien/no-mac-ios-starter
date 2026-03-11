@@ -42,7 +42,7 @@ targets:
       SWIFT_VERSION: "5.9"
       TARGETED_DEVICE_FAMILY: "1,2"
     dependencies:
-      - target: ShareExtension
+      # - target: ShareExtension
       - package: Firebase
         product: FirebaseAuth
       - package: Firebase
@@ -51,26 +51,4 @@ targets:
         product: FirebaseMessaging
       - package: GoogleSignIn
         product: GoogleSignIn
-  ShareExtension:
-    type: app-extension
-    platform: iOS
-    sources:
-      - path: ShareExtension
-      - path: GoogleService-Info.plist
-    settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.nyogo.Plus.ShareExtension
-      INFOPLIST_FILE: ShareExtension/Info.plist
-      CODE_SIGN_ENTITLEMENTS: ShareExtension.entitlements
-      PROVISIONING_PROFILE_SPECIFIER: "$(SHARE_EXTENSION_PROFILE_NAME)"
-      CODE_SIGN_STYLE: Manual
-      CODE_SIGN_IDENTITY: "Apple Distribution"
-      DEVELOPMENT_TEAM: "$(TEAM_ID)"
-      SWIFT_VERSION: "5.9"
-      TARGETED_DEVICE_FAMILY: "1,2"
-      SKIP_INSTALL: YES
-      PRODUCT_NAME: ShareExtension
-    dependencies:
-      - package: Firebase
-        product: FirebaseAuth
-      - package: Firebase
-        product: FirebaseDatabase
+
