@@ -131,6 +131,14 @@ jobs:
           CI: true
         run: bundle exec fastlane setup_certificates
 
+      - name: Debug - Check certificates
+        run: |
+          echo "=== Installed certificates ==="
+          security find-identity -v -p codesigning build.keychain
+          echo "=== Provisioning profiles ==="
+          ls ~/Library/MobileDevice/Provisioning\ Profiles/ 2>/dev/null || echo "No profiles found"
+          ls ~/Library/MobileDevice/Provisioning\ Profiles/*.mobileprovision 2>/dev/null | head -5 || echo "No .mobileprovision files"
+
       - name: Debug - Check project file
         run: |
           echo "=== Root directory ==="
