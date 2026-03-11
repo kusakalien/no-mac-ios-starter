@@ -57,6 +57,9 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
+      - name: Clear fastlane cache
+        run: rm -rf fastlane/report.xml fastlane/README.md vendor/bundle/.cache
+
       - name: Generate Certificates
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
