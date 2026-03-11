@@ -126,6 +126,10 @@ jobs:
           CI: true
         run: bundle exec fastlane beta
 
+      - name: Upload gym log
+        if: failure()
+        run: cat /Users/runner/Library/Logs/gym/Plus-Plus.log
+
       - name: Cleanup Keychain
         if: always()
         run: |
