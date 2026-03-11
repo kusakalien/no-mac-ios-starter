@@ -109,6 +109,15 @@ jobs:
           CI: true
         run: bundle exec fastlane setup_certificates
 
+      - name: Debug - Check project file
+        run: |
+          echo "=== Root directory ==="
+          ls *.xcodeproj || echo "No xcodeproj in root"
+          echo "=== fastlane directory ==="
+          ls fastlane/
+          echo "=== Working directory ==="
+          pwd
+
       - name: Build App and Upload to TestFlight
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
