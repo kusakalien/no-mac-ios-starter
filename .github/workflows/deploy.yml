@@ -144,7 +144,8 @@ jobs:
 
       - name: Upload gym log
         if: failure()
-        run: cat /Users/runner/Library/Logs/gym/Plus-Plus.log
+        run: |
+          grep -E "error:|warning:|fatal:" /Users/runner/Library/Logs/gym/Plus-Plus.log | grep -v "^note:" | head -50
 
       - name: Cleanup Keychain
         if: always()
