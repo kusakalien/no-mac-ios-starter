@@ -96,19 +96,19 @@ platform :ios do
   lane :build do
     setup_certificates
 
-    bundle_id = ENV["BUNDLE_IDENTIFIER"] || "com.example.myapp"
+    bundle_id = ENV["BUNDLE_IDENTIFIER"] || "com.nyogo.Plus"
     # extension_bundle_id = "#{bundle_id}.ShareExtension"
 
     profile_name = ENV["sigh_#{bundle_id}_appstore_profile-name"] || "match AppStore #{bundle_id}"
-    share_extension_profile_name = ENV["sigh_#{extension_bundle_id}_appstore_profile-name"] || "match AppStore #{extension_bundle_id}"
+    # share_extension_profile_name = ENV["sigh_#{extension_bundle_id}_appstore_profile-name"] || "match AppStore #{extension_bundle_id}"
 
     UI.message("🔐 Code signing configuration:")
     UI.message("  Team ID: #{ENV['TEAM_ID']}")
     UI.message("  Main App Profile: #{profile_name}")
-    UI.message("  Share Extension Profile: #{share_extension_profile_name}")
+    # UI.message("  Share Extension Profile: #{share_extension_profile_name}")
 
     ENV["APP_PROFILE_NAME"] = profile_name
-    ENV["SHARE_EXTENSION_PROFILE_NAME"] = share_extension_profile_name
+    # ENV["SHARE_EXTENSION_PROFILE_NAME"] = share_extension_profile_name
 
     if ENV["TEAM_ID"].nil? || ENV["TEAM_ID"].empty?
       UI.user_error!("❌ TEAM_ID environment variable is not set")
@@ -133,7 +133,7 @@ platform :ios do
         signingStyle: "manual",
         provisioningProfiles: {
           bundle_id => profile_name,
-          extension_bundle_id => share_extension_profile_name
+          # extension_bundle_id => share_extension_profile_name
         }
       }
     )
