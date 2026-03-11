@@ -116,51 +116,6 @@ jobs:
           xcodebuild -resolvePackageDependencies -project "${APP_NAME}.xcodeproj" -scheme "${APP_NAME}"
         timeout-minutes: 10
 
-      - name: Fetch Certificates and Provisioning Profiles
-        env:
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          TEAM_ID: ${{ secrets.TEAM_ID }}
-          # BUNDLE_IDENTIFIER: ${{ vars.BUNDLE_IDENTIFIER || 'com.example.myapp' }}
-          BUNDLE_IDENTIFIER: com.nyogo.Plus
-          KEYCHAIN_NAME: build.keychain
-          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
-          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
-          APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}
-          CI: true
-        run: bundle exec fastlane setup_certificates
-
-      - name: Debug - Check certificates
-        run: |
-          echo "=== Installed certificates ==="
-          security find-identity -v -p codesigning build.keychain
-          echo "=== Provisioning profiles ==="
-          ls ~/Library/MobileDevice/Provisioning\ Profiles/ 2>/dev/null || echo "No profiles found"
-          ls ~/Library/MobileDevice/Provisioning\ Profiles/*.mobileprovision 2>/dev/null | head -5 || echo "No .mobileprovision files"
-
-      - name: Debug - Check project file
-        run: |
-          echo "=== Root directory ==="
-          ls *.xcodeproj || echo "No xcodeproj in root"
-          echo "=== fastlane directory ==="
-          ls fastlane/
-          echo "=== Working directory ==="
-          pwd
-
-      - name: Debug - Before build
-        run: |
-          echo "=== Current dir ==="
-          pwd
-          echo "=== xcodeproj from root ==="
-          ls -la *.xcodeproj || echo "❌ not found"
-          echo "=== xcodeproj from fastlane ==="
-          ls -la fastlane/../*.xcodeproj || echo "❌ not found"
-          echo "=== TEAM_ID set? ==="
-          echo "TEAM_ID length: ${#TEAM_ID}"
-        env:
-          TEAM_ID: ${{ secrets.TEAM_ID }}
-
       - name: Build App and Upload to TestFlight
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
@@ -175,9 +130,7 @@ jobs:
           FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120
           FASTLANE_XCODEBUILD_SETTINGS_RETRIES: 5
           CI: true
-        run: |
-          bundle exec fastlane beta 2>&1 | tee /tmp/fastlane_output.txt
-          exit ${PIPESTATUS[0]} 
+        run: bundle exec fastlane beta
 
       - name: Show xcodebuild raw output on failure
         if: failure()
