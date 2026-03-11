@@ -7,10 +7,10 @@ git_url("git@github.com:kusakalien/certificates.git")
 storage_mode("git")
 
 # ⚠️ CHANGE THIS to your bundle identifier
-app_identifier([
-  ENV["BUNDLE_IDENTIFIER"] || "com.nyogo.Plus",
-  "#{ENV["BUNDLE_IDENTIFIER"] || "com.nyogo.Plus"}.ShareExtension"
-])
+app_identifier(
+  ENV["BUNDLE_IDENTIFIER"] || "com.nyogo.Plus"
+  # "#{ENV["BUNDLE_IDENTIFIER"] || "com.nyogo.Plus"}.ShareExtension"
+)
 
 team_id(ENV["TEAM_ID"])
 username(ENV["APPLE_ID"])
