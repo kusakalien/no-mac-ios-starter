@@ -43,6 +43,13 @@ jobs:
           security unlock-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
           security set-keychain-settings -t 3600 -u build.keychain
 
+      - name: Debug certificates repo
+        run: |
+          security find-identity -v -p codesigning
+          security find-identity -v -p codesigning build.keychain
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ 2>/dev/null || echo "no profiles in MobileDevice"
+          ls -la ~/Library/Developer/Xcode/UserData/Provisioning\ Profiles/ 2>/dev/null || echo "no profiles in Xcode UserData"
+
       - name: Configure Git for Match
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
